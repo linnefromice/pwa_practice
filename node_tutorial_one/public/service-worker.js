@@ -13,7 +13,8 @@ self.addEventListener('activate', function(event) {
 const CACHE_NAME = 'sw-cache-example';
 const toCache = [
   '/',
-  '/index.html'
+  'index.html',
+  'js/status.js'
 ];
 
 self.addEventListener('install', function(event) {
