@@ -37,7 +37,7 @@ self.addEventListener('activate', function(event) {
           }
         }))
       })
-    .then(() => self.ClientRectList.claim())
+    .then(() => self.clients.claim())
   )
 });
 
