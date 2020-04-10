@@ -30,3 +30,16 @@ self.addEventListener('install', function(event) {
     .then(() => self.ClientRectList.claim())
   )
 });
+
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    fetch(event.request)
+      .catch(() => {
+        return caches.open(CACHE_NAME)
+          .then((cache) => {
+            return cache.match(event.request);
+          })
+      })
+  )
+});
+
