@@ -18,6 +18,16 @@ const toCache = [
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        return cache.addAll(toCache);
+      })
+      .then(self.skipWaiting())
+  )
+});
+
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
     caches.keys()
       .then((keyList) => {
         return Promise.all(keyList.map((key) => {
